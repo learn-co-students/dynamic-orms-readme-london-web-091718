@@ -1,8 +1,8 @@
 require_relative "../config/environment.rb"
 require 'active_support/inflector'
+require 'pry'
 
 class Song
-
 
   def self.table_name
     self.to_s.downcase.pluralize
@@ -10,7 +10,6 @@ class Song
 
   def self.column_names
     DB[:conn].results_as_hash = true
-
     sql = "pragma table_info('#{table_name}')"
 
     table_info = DB[:conn].execute(sql)
@@ -54,11 +53,12 @@ class Song
   end
 
   def self.find_by_name(name)
-    sql = "SELECT * FROM #{self.table_name} WHERE name = '#{name}'"
+    sql = "SELECT * FROM #{rspecself.table_name} WHERE name = '#{name}'"
     DB[:conn].execute(sql)
   end
 
 end
 
+binding.pry
 
-
+p"eod"
